@@ -6,15 +6,21 @@ import ExpenseService.Project.Project;
 import ExpenseService.Project.ProjectType;
 import org.junit.jupiter.api.Test;
 
+import static ExpenseService.Expense.ExpenseType.INTERNAL_PROJECT_EXPENSE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExpenseServiceTest {
     @Test
     void should_return_internal_expense_type_if_project_is_internal() throws UnexpectedProjectTypeException {
         // given
+        Project project=new Project(ProjectType.INTERNAL,"project");
         // when
+        ExpenseType expenseCodeByProjectTypeAndName = ExpenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
+        assertEquals(expenseCodeByProjectTypeAndName,INTERNAL_PROJECT_EXPENSE);
     }
 
     @Test
